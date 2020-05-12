@@ -30,26 +30,26 @@ const Settings = () => {
         <form className="settings__form" onSubmit={handleSubmit}>
           <ul className="settings__list">
             <li className="settings__item">
-              <input className="settings__item-input" type="text" name="banner_name" value={settings.name} onChange={handleChange}/>
+              <input className="settings__item-input" type="text" name="banner_name" value={settings["banner_name"]} onChange={handleChange}/>
               <label className={settings['banner_name'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_name">Название баннера</label>
             </li>
             <li className="settings__item">
               <label className="settings__item-label-select" htmlFor="banner_type">Тип баннера</label>
-              <select name="banner_type" defaultValue="Прямой" value={settings.name} onChange={handleChange} >
+              <select name="banner_type" defaultValue="Прямой" value={settings["banner_type"]} onChange={handleChange} >
                 <option value="Прямой">Прямой</option>
                 <option value="Обратный">Обратный</option>
               </select>
             </li>
             <li className="settings__item">
-              <input className="settings__item-input" type="text" name="banner_img_y" value={settings.name} onChange={handleChange}/>
+              <input className="settings__item-input" type="text" name="banner_img_y" value={settings["banner_img_y"]} onChange={handleChange}/>
               <label className={settings['banner_img_y'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_img_y">Вертикальное Изображение</label>
             </li>
             <li className="settings__item">
-              <input className="settings__item-input" type="text" name="banner_img_h" value={settings.name} onChange={handleChange}/>
+              <input className="settings__item-input" type="text" name="banner_img_h" value={settings["banner_img_h"]} onChange={handleChange}/>
               <label className={settings['banner_img_h'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_img_h">Горизонтальное изображение</label>
             </li>
             <li className="settings__item">
-              <input className="settings__item-input" type="text" name="banner_link" value={settings.name} onChange={handleChange}/>
+              <input className="settings__item-input" type="text" name="banner_link" value={settings["banner_link"]} onChange={handleChange}/>
               <label className={settings['banner_link'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_link">Целевая ссылка</label>
             </li>
             <li className="settings__item">
