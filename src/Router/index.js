@@ -4,12 +4,12 @@ import Preview from '../pages/Preview';
 import { Switch, Route } from 'react-router-dom';
 
 
-const Router = (props) => {
+const Router = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <></>} />
-      <Route exact path="/settings" render={() => <Settings {...props} />}/>
-      <Route path="/preview" render={() => <Preview {...props} />} />
+      <Route exact path="/settings" component={Settings} />
+      <Route path="/preview" component={Preview} />
       <Route component={() => <h1>Not Found</h1>} />
     </Switch>
   )

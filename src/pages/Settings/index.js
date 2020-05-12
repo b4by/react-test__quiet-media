@@ -1,86 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import FormItem from './FormItem';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from '../../context';
 import Banner from '../../components/Banner';
 import './index.scss';
 
-const Settings = (props) => {
-  // Настройки полей формы
-  const [settings, setSettings] = useState([
-    {
-      tag: 'input',
-      type: 'text',
-      name: 'banner_name',
-      label: 'Название баннера',
-      value: '',
-      pattern: "[A-Za-z0-9]{3,30}"
-    },
-    {
-      tag: 'select',
-      name: 'banner_type',
-      label: 'Тип баннера',
-      options: ['Прямой', 'Обратный'],
-      value: 'Прямой'
-    },
-    {
-      tag: 'input',
-      type: 'text',
-      name: 'banner_img_y',
-      label: 'Вертикальное изображение',
-      value: '',
-      pattern: "https?://.*"
-    },
-    {
-      tag: 'input',
-      type: 'text',
-      name: 'banner_img_h',
-      label: 'Горизонтальное изображение',
-      value: '',
-      pattern: "https?://.*"
-    },
-    {
-      tag: 'input',
-      type: 'text',
-      name: 'banner_link',
-      label: 'Целевая ссылка',
-      value: '',
-      pattern: "https?://.*"
-    }
-  ])
+const Settings = () => {
 
-  // Данные для рендеринга компонента <Banner />
-  const [banner, setBanner] = useState(getFormValues(settings, 'name'));
+  const {settings, setSettings, setPreviewReady} = useContext(Context);
 
   const [isSubmit, setSubmit] = useState(false);
 
-  const onInputChange = (e, key) => {
-    const { value } = e.target
-    const newSettings = settings;
-    newSettings[key].value = value;
-    setSettings([...newSettings])
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSettings({...settings, [name]: value});
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // При сабмите формы вызываем функции из компонента <App />
-    props.setPreviewReady(true);
-    props.setBanner(banner);
     setSubmit(true)
+    setPreviewReady(true)
   }
 
-  function getFormValues(obj, property) {
-    const data = {};
-    
-    obj.forEach(el => {
-      data[el[property]] = el.value
-    });
-
-    return data;
-  }
-
-  // Если обновляется settings, то обновляем banner
   useEffect(() => {
-    const bannerInfo = getFormValues(settings, 'name');
-    setBanner(bannerInfo);
+    console.log(settings)
   }, [settings])
 
   return (
@@ -88,7 +29,29 @@ const Settings = (props) => {
       <div className="container">
         <form className="settings__form" onSubmit={handleSubmit}>
           <ul className="settings__list">
-            {settings.map((setting, key) => <FormItem key={key} handler={(e) => onInputChange(e, key)} {...setting} />)}
+            <li className="settings__item">
+              <input className="settings__item-input" type="text" name="banner_name" value={settings.name} onChange={handleChange}/>
+              <label className={settings['banner_name'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_name">Название баннера</label>
+            </li>
+            <li className="settings__item">
+              <label className="settings__item-label-select" htmlFor="banner_type">Тип баннера</label>
+              <select name="banner_type" defaultValue="Прямой" value={settings.name} onChange={handleChange} >
+                <option value="Прямой">Прямой</option>
+                <option value="Обратный">Обратный</option>
+              </select>
+            </li>
+            <li className="settings__item">
+              <input className="settings__item-input" type="text" name="banner_img_y" value={settings.name} onChange={handleChange}/>
+              <label className={settings['banner_img_y'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_img_y">Вертикальное Изображение</label>
+            </li>
+            <li className="settings__item">
+              <input className="settings__item-input" type="text" name="banner_img_h" value={settings.name} onChange={handleChange}/>
+              <label className={settings['banner_img_h'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_img_h">Горизонтальное изображение</label>
+            </li>
+            <li className="settings__item">
+              <input className="settings__item-input" type="text" name="banner_link" value={settings.name} onChange={handleChange}/>
+              <label className={settings['banner_link'] !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_link">Целевая ссылка</label>
+            </li>
             <li className="settings__item">
               <input 
                 className="settings__submit btn" 
@@ -98,11 +61,10 @@ const Settings = (props) => {
             </li>
           </ul>
         </form>
-        { (isSubmit && Object.keys(banner).length !== 0) ? <Banner {...banner} /> : null}
+        { isSubmit ? <Banner {...settings} /> : null}
       </div>
     </div>
   )
 }
-
 
 export default Settings;

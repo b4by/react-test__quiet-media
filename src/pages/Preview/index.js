@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../../context';
 import Banner from '../../components/Banner';
 
-const Preview = (props) => {
-  const [banner] = useState(props.banner);
+const Preview = () => {
+
+  const { settings } = useContext(Context);
+  
   return (
-    <Banner {...banner} />
+    <Banner {...settings} />
   )
 }
 

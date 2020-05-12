@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Router from './Router';
+import { Context } from './context';
 import './App.scss';
 
 const App = () => {
-  // Если форма со страницы "Параметры" отправлена, то previewReady = true
-  // Ссылка "Предпросмотр" становится активной
   const [previewReady, setPreviewReady] = useState(false);
-  
-  // Информация по баннеру для рендеринга компонента <Banner /> на странице "Предпросмотр"
-  const [banner, setBanner] = useState('');
+  const [settings, setSettings] = useState({
+    banner_name: '',
+    banner_type: 'Прямой',
+    banner_img_y: '',
+    banner_img_h: '',
+    banner_link: ''
+  });
 
   return (
-    <div className="app">
-      <Sidebar previewReady={previewReady} />
-      <div className="app__main">
-        <Router setPreviewReady={setPreviewReady} banner={banner} setBanner={setBanner}/>
+    <Context.Provider value={{
+      settings, setSettings,
+      previewReady, setPreviewReady
+    }}>
+      <div className="app">
+        <Sidebar />
+        <div className="app__main">
+          <Router/>
+        </div>
       </div>
-    </div>
+    </Context.Provider>
   );
 }
 
