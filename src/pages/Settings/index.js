@@ -46,7 +46,7 @@ const Settings = () => {
             </li>
             <li className="settings__item">
               <input className="settings__item-input" type="text" name="banner_img_y" value={settings.banner_img_y} onChange={handleChange}/>
-              <label className={settings['banner_img_y'].trim() !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_img_y">Вертикальное Изображение</label>
+              <label className={settings['banner_img_y'].trim() !== '' ? "settings__item-label settings__item-label--done" : "settings__item-label"} htmlFor="banner_img_y">Вертикальное изображение</label>
               <span className="settings__error">{errors.banner_img_y}</span>
             </li>
             <li className="settings__item">
