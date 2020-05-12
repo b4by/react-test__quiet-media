@@ -1,0 +1,22 @@
+.banner {
+  padding: 20px;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 320px;
+    transition: all .3s ease-in-out;
+  }
+  &__title {
+    background-color: #F2F3F7;
+    color: #456078;
+  }
+  &__link {
+    margin: 15px;
+    box-shadow: none;
+  }
+}
