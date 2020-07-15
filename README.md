@@ -26,4 +26,4 @@
 
 ## Отзыв ##
 
-![Review](https://github.com/b4by/react-test__quiet-media/tree/master/review_quite.jpg)
+![Review](https://github.com/b4by/react-test__quiet-media/blob/master/review_quite.jpg)
